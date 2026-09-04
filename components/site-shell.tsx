@@ -19,7 +19,7 @@ export function Header({ inverse = false }: { inverse?: boolean }) {
       <button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>Menu <span>{open ? '×' : '☰'}</span></button>
       <nav className={`site-nav ${open ? 'open' : ''}`}>
         {navItems.slice(1).map(item => <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
-        <a className="header-cta" href="mailto:hello@saaf.trade?subject=Saaf Trade demo" onClick={() => setOpen(false)}>Request a demo <span>↗</span></a>
+        <Link className="header-cta" href="/request-demo" onClick={() => setOpen(false)}>Request a demo <span>↗</span></Link>
       </nav>
     </div>
   </header>
