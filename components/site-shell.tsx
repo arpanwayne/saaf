@@ -10,7 +10,7 @@ export function Header({ inverse = false }: { inverse?: boolean }) {
   const [open, setOpen] = useState(false)
   return <header className={`site-header ${inverse ? 'inverse' : ''}`}>
     <div className="site-shell header-inner">
-      <Link href="/" className="brand" onClick={() => setOpen(false)}><img src="/saaf-trade-logo.png" alt="Saaf Trade" className="brand-logo-img" /></Link>
+      <Link href="/" className="brand" onClick={() => setOpen(false)}><img src="/saaf-trade-logo.png" alt="Saaf Trade" className="brand-logo-img" /><span className="brand-text">saaf<span className="brand-dot">.</span>trade</span></Link>
       <button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>Menu <span>{open ? '×' : '☰'}</span></button>
       <nav className={`site-nav ${open ? 'open' : ''}`}>
         {navItems.slice(1).map(item => <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
