@@ -2,20 +2,15 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { navItems, legalNavItems } from '@/lib/nav'
 
-export const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/brokers', label: 'For brokers' },
-  { href: '/investors', label: 'For investors' },
-  { href: '/how-it-works', label: 'How it works' },
-  { href: '/our-promise', label: 'Our promise' },
-]
+export { navItems, legalNavItems }
 
 export function Header({ inverse = false }: { inverse?: boolean }) {
   const [open, setOpen] = useState(false)
   return <header className={`site-header ${inverse ? 'inverse' : ''}`}>
     <div className="site-shell header-inner">
-      <Link href="/" className="brand" onClick={() => setOpen(false)}><span className="brand-mark">S</span><span>saaf<span className="brand-dot">.</span>trade</span></Link>
+      <Link href="/" className="brand" onClick={() => setOpen(false)}><img src="/saaf-trade-mark.png" alt="Saaf Trade logo" className="brand-mark-img" /><span>saaf<span className="brand-dot">.</span>trade</span></Link>
       <button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>Menu <span>{open ? '×' : '☰'}</span></button>
       <nav className={`site-nav ${open ? 'open' : ''}`}>
         {navItems.slice(1).map(item => <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
@@ -27,11 +22,14 @@ export function Header({ inverse = false }: { inverse?: boolean }) {
 
 export function Footer() {
   return <footer className="site-footer"><div className="site-shell footer-grid">
-    <Link href="/" className="brand"><span className="brand-mark">S</span><span>saaf<span className="brand-dot">.</span>trade</span></Link>
-    <div><span className="footer-label">EXPLORE</span>{navItems.slice(1, 4).map(item => <Link key={item.href} href={item.href}>{item.label}</Link>)}</div>
+    <div className="footer-brand">
+      <Link href="/" className="brand"><img src="/saaf-trade-logo.png" alt="Saaf Trade logo" className="footer-logo-img" /></Link>
+      <p className="footer-note">Technology infrastructure for disciplined trading. Funds remain with the client&apos;s own SEBI-registered broker — always.</p>
+    </div>
+    <div><span className="footer-label">EXPLORE</span>{navItems.slice(1).map(item => <Link key={item.href} href={item.href}>{item.label}</Link>)}</div>
+    <div><span className="footer-label">LEGAL</span>{legalNavItems.map(item => <Link key={item.href} href={item.href}>{item.label}</Link>)}</div>
     <div><span className="footer-label">CONTACT</span><a href="mailto:hello@saaf.trade">hello@saaf.trade ↗</a><span>New Delhi · India</span></div>
-    <div className="footer-note">Technology infrastructure for disciplined trading.<br />Funds remain with the client&apos;s broker.</div>
-  </div><div className="site-shell footer-bottom"><span>© 2026 SAAF TRADE</span><span>Not an offer of guaranteed returns.</span></div></footer>
+  </div><div className="site-shell footer-bottom"><span>© 2026 SAAF TRADE</span><span>Not an offer of guaranteed returns. Saaf Trade is a technology provider, not a SEBI-registered broker or investment adviser.</span></div></footer>
 }
 
 export function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="eyebrow"><span className="eyebrow-dot" />{children}</p> }
